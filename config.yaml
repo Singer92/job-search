@@ -1,7 +1,7 @@
 agent:
-  min_match_score: 65
-  max_jobs_to_fetch_per_source: 25
-  max_jobs_to_match: 50
+  min_match_score: 35
+  max_jobs_to_fetch_per_source: 10
+  max_jobs_to_match: 20
   max_description_chars: 6000
   max_days_old: 4
   send_empty_digest: false
