@@ -148,8 +148,8 @@ sources:
       - nz
 
   jooble:
-    enabled: true
+    enabled: false
 
   rss:
-    enabled: false
+    enabled: true
     feeds: []
