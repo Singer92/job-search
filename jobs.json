@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "title": "System Test: Carnatic Vocal Instructor",
+    "company": "Job Agent Dashboard",
+    "location": "Chennai / Remote",
+    "url": "https://github.com/Singer92/job-search",
+    "source": "manual_test",
+    "posted_date": "2026-08-10",
+    "remote": true,
+    "match_score": 95,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "Matches your Kalakshetra Diploma",
+      "Matches your M.A. in Indian Music",
+      "Matches your 10+ years of teaching experience"
+    ],
+    "gaps": [
+      "This is a test entry to verify the dashboard works"
+    ],
+    "cover_letter": "Dear Hiring Team, I am writing to express my interest in the Carnatic Vocal Instructor position. With a Diploma from Kalakshetra Foundation and over 10 years of teaching experience, I am confident in my ability to contribute to your institution. Sincerely, Ezhilarasi Murugesan"
+  }
+]
