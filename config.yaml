@@ -137,7 +137,7 @@ search_queries:
 
 sources:
   adzuna:
-    enabled: false
+    enabled: true
     countries:
       - in
       - gb
@@ -148,7 +148,7 @@ sources:
       - nz
 
   jooble:
-    enabled: false
+    enabled: true
 
   rss:
     enabled: false
