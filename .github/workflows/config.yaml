@@ -1,0 +1,155 @@
+agent:
+  min_match_score: 65
+  max_jobs_to_fetch_per_source: 25
+  max_jobs_to_match: 50
+  max_description_chars: 6000
+  max_days_old: 4
+  send_empty_digest: false
+
+candidate:
+  name: "Ezhilarasi Murugesan"
+  headline: "Carnatic Music Educator · Performing Vocalist & Composer · Doctoral Research Scholar"
+  location: "Chennai, Tamil Nadu, India"
+  email: "isaiezhil22@gmail.com"
+
+  languages:
+    - Tamil
+    - English
+    - Hindi
+
+  target_roles:
+    - Carnatic music teacher
+    - Indian classical music teacher
+    - Vocal instructor
+    - Online music teacher
+    - Music educator
+    - Music curriculum designer
+    - Teaching artist
+    - Music lecturer
+    - Assistant professor of music
+    - Ethnomusicology faculty
+    - Music education researcher
+    - Composer
+    - Performing vocalist
+    - Music programme coordinator
+    - Arts education specialist
+
+  core_skills:
+    - Carnatic vocal pedagogy
+    - Varnam, kriti, ragam, niraval and swaram training
+    - Bhajans and devotional repertoire
+    - Curriculum and syllabus design
+    - Performance preparation and stagecraft
+    - Music theory and notating songs
+    - Composition and songwriting for Tamil light music
+    - Online and remote music instruction
+    - Karaoke and backing-track production
+    - Music education for autistic children
+    - Inclusive music education
+    - Vocal, violin and guitar instruction
+
+  education:
+    - "PhD in Music, in progress, VISTAS, 2024–2028"
+    - "M.A. in Indian Music, University of Madras, 2018"
+    - "Diploma in Carnatic Music Vocal, Kalakshetra Foundation, 2014"
+    - "Bachelor of Music, University of Madras, 2013"
+
+  experience_highlights:
+    - "Over 10 years of music teaching experience"
+    - "Music Teacher at Vanshi Manthan Vidyashram, Edexcel–Pearson affiliated"
+    - "Senior Music Teacher at Sangeetha Kalalayaa – The School of Fine Arts"
+    - "Music Teacher at Niharika Multi-Activity Centre"
+    - "Independent online and home-based Carnatic and light music educator"
+    - "Trained students for competitions, grade exams and performances"
+    - "Experience teaching children, all age groups, and inclusive learning settings"
+
+  performance_profile:
+    - "Active Carnatic vocal performer"
+    - "Founder-performer of the band On the Streets of Chennai"
+    - "Original Tamil light music composer"
+    - "Vocalist, violinist and guitarist"
+    - "Collaborations with sabhas, Bharatanatyam academies and cultural festivals"
+    - "Contributor to Aanmajothi – Music to Schools initiative"
+
+  research_profile:
+    - "Doctoral research in Indian Music, Nagarathar Music Traditions"
+    - "Presented paper at 9th Annual World Music Conference 2025"
+    - "Member of European Society for the Cognitive Sciences of Music"
+
+  work_authorisation:
+    nationality: "Indian"
+    open_to_remote: true
+    open_to_india: true
+    open_to_relocation: true
+    needs_visa_sponsorship_for_relocation: true
+
+preferences:
+  job_types:
+    - full-time
+    - part-time
+    - contract
+    - freelance
+    - remote
+    - online
+    - academic
+    - performance
+
+  open_to_remote: true
+  open_to_india: true
+  open_to_relocation: true
+
+  visa_sponsorship_required_for_relocation: true
+
+  target_regions:
+    - India
+    - Remote
+    - Singapore
+    - Malaysia
+    - UAE
+    - Qatar
+    - Oman
+    - UK
+    - USA
+    - Canada
+    - Australia
+    - New Zealand
+    - Germany
+    - France
+    - Netherlands
+
+search_queries:
+  - "Carnatic music teacher"
+  - "Indian classical music teacher"
+  - "Carnatic vocal instructor"
+  - "Indian music teacher"
+  - "online music teacher"
+  - "remote music teacher"
+  - "vocal instructor"
+  - "music educator"
+  - "music curriculum designer"
+  - "teaching artist music"
+  - "ethnomusicology lecturer"
+  - "music lecturer"
+  - "assistant professor music"
+  - "Tamil light music composer"
+  - "music teacher special needs"
+  - "music education autism"
+
+sources:
+  adzuna:
+    enabled: false
+    countries:
+      - in
+      - gb
+      - us
+      - ca
+      - au
+      - sg
+      - nz
+
+  jooble:
+    enabled: false
+
+  rss:
+    enabled: false
+    feeds: []
