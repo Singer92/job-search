@@ -16,9 +16,7 @@ import yaml
 import feedparser
 from openai import OpenAI
 
-# Setup logging for GitHub Actions
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
 DB_PATH = "jobs.db"
 
 def load_config():
@@ -75,7 +73,7 @@ def strip_html(text):
     text = re.sub(r"<[^<]+?>", " ", text)
     return re.sub(r"\s+", " ", text).strip()
 
-# --- SOURCE 1: ADZUNA API (Global/Private) ---
+# --- SOURCE 1: ADZUNA API (REAL JOBS) ---
 def fetch_adzuna(cfg, session, limit):
     app_id = os.getenv("ADZUNA_APP_ID")
     app_key = os.getenv("ADZUNA_APP_KEY")
@@ -108,11 +106,11 @@ def fetch_adzuna(cfg, session, limit):
                             "url": link, "source": f"adzuna:{country}", "posted_date": item.get("created", ""), "description": description
                         })
             except Exception as e:
-                logging.warning(f"Adzuna error for {country}/{query}: {e}")
+                logging.warning(f"Adzuna error: {e}")
             time.sleep(1)
     return jobs
 
-# --- SOURCE 2: RSS FEEDS (Employment News / Academic) ---
+# --- SOURCE 2: RSS FEEDS (REAL GOVT/ACADEMIC JOBS) ---
 def fetch_rss_feeds(cfg, session):
     rss_cfg = cfg.get("sources", {}).get("rss", {})
     if not rss_cfg.get("enabled"): return []
@@ -126,39 +124,37 @@ def fetch_rss_feeds(cfg, session):
                 link = entry.get("link", "")
                 summary = strip_html(entry.get("summary", ""))
                 text = f"{title} {summary}".lower()
-                if any(k in text for k in ["music", "isai", "carnatic", "lecturer", "fine arts", "kalakshetra", "sangeet"]):
+                # Broader filter to catch more real jobs
+                if any(k in text for k in ["music", "isai", "carnatic", "lecturer", "fine arts", "kalakshetra", "sangeet", "teacher", "faculty"]):
                     jobs.append({
                         "title": title, "company": feed.get("name", "RSS"), "location": "India",
                         "remote": False, "url": link, "source": f"rss:{feed.get('name')}",
                         "posted_date": entry.get("published", ""), "description": summary
                     })
         except Exception as e:
-            logging.warning(f"RSS error for {feed.get('name')}: {e}")
+            logging.warning(f"RSS error: {e}")
     return jobs
 
-# --- SOURCE 3: TN GOV SCRAPER (TRB / Kalakshetra) ---
+# --- SOURCE 3: TN GOV SCRAPER (REAL LOCAL JOBS) ---
 def fetch_tn_gov_jobs(session):
     jobs = []
     targets = [
         {"name": "TRB TN", "url": "http://trb.tn.gov.in/"},
         {"name": "Kalakshetra Foundation", "url": "https://www.kalakshetra.org/careers/"}
     ]
-    
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"}
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
     
     for target in targets:
         try:
-            r = session.get(target["url"], headers=headers, timeout=15)
+            r = session.get(target["url"], headers=headers, timeout=30)
             if r.status_code == 200:
                 links = re.findall(r'href=[\'"]?([^\'" >]+)', r.text)
                 for link in links:
                     lower_link = link.lower()
-                    if any(k in lower_link for k in ["music", "isai", "lecturer", "fine_arts", "carnatic", "vocal"]):
+                    if any(k in lower_link for k in ["music", "isai", "lecturer", "fine_arts", "carnatic", "vocal", "teacher"]):
                         if link.startswith("/"):
                             link = target["url"].rstrip("/") + link
-                        
                         title = link.split("/")[-1].replace("-", " ").replace(".pdf", "").title() or f"Music Vacancy at {target['name']}"
-                        
                         jobs.append({
                             "title": f"Govt Music Vacancy: {title}",
                             "company": target["name"],
@@ -167,7 +163,7 @@ def fetch_tn_gov_jobs(session):
                             "url": link if link.startswith("http") else target["url"],
                             "source": "tn_gov_scraper",
                             "posted_date": datetime.now(timezone.utc).isoformat(),
-                            "description": f"Direct recruitment notification found on {target['name']} portal. Please check the official PDF/website for exact eligibility, age limit, and application dates."
+                            "description": f"Direct recruitment notification found on {target['name']} portal."
                         })
         except Exception as e:
             logging.warning(f"TN Gov Scraper error for {target['name']}: {e}")
@@ -175,7 +171,34 @@ def fetch_tn_gov_jobs(session):
     unique_jobs = {j['url']: j for j in jobs}.values()
     return list(unique_jobs)
 
-# --- AI MATCHING ENGINE (Groq/Llama 3) ---
+# --- AI MATCHING WITH KEYWORD FALLBACK ---
+def keyword_fallback_match(job, cfg):
+    """Used when AI is rate-limited. Scores based on CV keywords."""
+    text = f"{job.get('title', '')} {job.get('description', '')}".lower()
+    score = 30 # Base score for being fetched
+    
+    # High value keywords from your CV
+    high_keywords = ["carnatic", "indian classical", "vocal", "music teacher", "lecturer", "kalakshetra", "curriculum"]
+    for kw in high_keywords:
+        if kw in text: score += 10
+    
+    # Location bonus
+    if "remote" in text or "online" in text: score += 5
+    if "india" in job.get("location", "").lower() or "chennai" in job.get("location", "").lower(): score += 5
+    
+    # Visa penalty
+    if "visa sponsorship" not in text and "india" not in job.get("location", "").lower() and "remote" not in text:
+        score = min(score, 60) # Cap at 60 if overseas/no visa
+        
+    return {
+        "match_score": min(score, 95),
+        "should_apply": "yes" if score >= 35 else "maybe",
+        "fit_reasons": ["Matched via Keyword Fallback (AI Rate Limited)"],
+        "gaps": ["AI analysis unavailable due to daily limit"],
+        "resume_keywords": [],
+        "cover_letter": ""
+    }
+
 def parse_json_loose(text):
     text = (text or "").strip()
     if text.startswith("```"):
@@ -186,7 +209,7 @@ def parse_json_loose(text):
 
 def call_llm_json(prompt):
     api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key: raise RuntimeError("OPENAI_API_KEY missing.")
+    if not api_key: return None
     client = OpenAI(api_key=api_key, base_url=os.getenv("OPENAI_BASE_URL") or None)
     model = os.getenv("OPENAI_MODEL", "llama-3.3-70b-versatile")
     messages = [
@@ -195,16 +218,18 @@ def call_llm_json(prompt):
     ]
     try:
         resp = client.chat.completions.create(model=model, messages=messages, temperature=0.1, response_format={"type": "json_object"})
-    except Exception:
-        resp = client.chat.completions.create(model=model, messages=messages, temperature=0.1)
-    return parse_json_loose(resp.choices[0].message.content)
+        return parse_json_loose(resp.choices[0].message.content)
+    except Exception as e:
+        if "429" in str(e):
+            logging.warning("AI Rate Limit Hit. Switching to Keyword Fallback.")
+            return None # Trigger fallback
+        raise e
 
 def build_prompt(job, cfg, min_score):
     candidate = cfg.get("candidate", {})
     preferences = cfg.get("preferences", {})
     job_copy = dict(job)
-    max_chars = cfg.get("agent", {}).get("max_description_chars", 6000)
-    job_copy["description"] = (job_copy.get("description") or "")[:max_chars]
+    job_copy["description"] = (job_copy.get("description") or "")[:2000] # Save tokens
     
     return f"""
 You are a global job-search agent for Ezhilarasi Murugesan.
@@ -217,15 +242,11 @@ JOB:
 
 TASK: Evaluate how well this job matches the candidate.
 RULES:
-1. Prioritise Carnatic music, Indian classical music, vocal pedagogy, music education, curriculum design, online music teaching, ethnomusicology, teaching artist, and composer/vocalist roles.
-2. The candidate is open to remote work, India roles, and relocation.
-3. For roles requiring relocation outside India, only consider them strong if the job description explicitly mentions visa sponsorship, work permit support, relocation support, or international hiring. If no such evidence exists, set visa_sponsorship_evidence to "no" or "unclear" and keep match_score at or below 60.
-4. For India-based or remote roles, visa sponsorship is not required.
-5. Do not invent requirements or benefits.
-6. If the role is clearly irrelevant, give a low score.
-7. Write a concise tailored cover letter only if match_score is likely at least {min_score}; otherwise return an empty string.
+1. Prioritise Carnatic music, Indian classical music, vocal pedagogy, music education, curriculum design, online music teaching.
+2. For roles requiring relocation outside India, only consider strong if visa sponsorship is explicit. Else score <= 60.
+3. Write a concise tailored cover letter only if match_score >= {min_score}.
 
-RETURN ONLY VALID JSON WITH THIS SHAPE:
+RETURN ONLY VALID JSON:
 {{
   "match_score": 0,
   "should_apply": "yes",
@@ -240,15 +261,22 @@ RETURN ONLY VALID JSON WITH THIS SHAPE:
 """.strip()
 
 def match_job(job, cfg):
-    min_score = cfg.get("agent", {}).get("min_match_score", 65)
+    min_score = cfg.get("agent", {}).get("min_match_score", 35)
     prompt = build_prompt(job, cfg, min_score)
+    
+    # Try AI first
     result = call_llm_json(prompt)
+    
+    # If AI fails (Rate Limit), use Keyword Fallback
+    if not result:
+        result = keyword_fallback_match(job, cfg)
     
     try: score = int(result.get("match_score", 0))
     except: score = 0
     score = max(0, min(100, score))
     result["match_score"] = score
     
+    # Visa Rule Enforcement
     relocation = result.get("relocation_required", False)
     if isinstance(relocation, str): relocation = relocation.strip().lower() in {"true", "yes", "1"}
     result["relocation_required"] = bool(relocation)
@@ -264,18 +292,14 @@ def match_job(job, cfg):
     if result["match_score"] < min_score: result["cover_letter"] = ""
     return result
 
-# --- EMAIL DELIVERY ---
 def send_email(jobs, cfg):
     host = os.getenv("SMTP_HOST")
-    port = int(os.getenv("SMTP_PORT", "587"))
     user = os.getenv("SMTP_USER")
     password = os.getenv("SMTP_PASS")
     to_addr = os.getenv("EMAIL_TO")
     from_addr = os.getenv("EMAIL_FROM") or user
     
-    if not all([host, user, password, to_addr]):
-        logging.warning("Email secrets missing. Skipping email delivery.")
-        return
+    if not all([host, user, password, to_addr]): return
         
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
     subject = f"Music Job Digest — {now} — {len(jobs)} matches"
@@ -283,43 +307,10 @@ def send_email(jobs, cfg):
     rows = []
     details = []
     for i, job in enumerate(jobs, 1):
-        title = job.get("title", "Untitled")
-        company = job.get("company", "")
-        location = job.get("location", "")
-        url = job.get("url", "#")
-        score = int(job.get("match_score", 0))
-        should = job.get("should_apply", "maybe")
+        rows.append(f"<tr><td>{i}</td><td><a href='{job.get('url')}'>{job.get('title')}</a></td><td>{job.get('company')}</td><td>{job.get('location')}</td><td>{job.get('match_score')}</td></tr>")
+        details.append(f"<h3>{i}. {job.get('title')}</h3><p>{job.get('fit_reasons')}</p>")
         
-        rows.append(f"<tr><td>{i}</td><td><a href='{url}'>{title}</a></td><td>{company}</td><td>{location}</td><td>{score}</td><td>{should}</td></tr>")
-        
-        fit_items = "".join(f"<li>{x}</li>" for x in job.get("fit_reasons", []))
-        gap_items = "".join(f"<li>{x}</li>" for x in job.get("gaps", []))
-        kw_items = ", ".join(job.get("resume_keywords", []))
-        cover = (job.get("cover_letter", "") or "").replace("\n", "<br>")
-        
-        details.append(f"""
-        <hr>
-        <h3>{i}. {title} — {company}</h3>
-        <p><strong>Location:</strong> {location} | <strong>Score:</strong> {score} | <strong>Apply?</strong> {should}</p>
-        <p><strong>Why it fits:</strong></p><ul>{fit_items or '<li>N/A</li>'}</ul>
-        <p><strong>Gaps:</strong></p><ul>{gap_items or '<li>N/A</li>'}</ul>
-        <p><strong>Resume keywords:</strong> {kw_items or 'N/A'}</p>
-        <p><strong>Draft cover letter:</strong></p>
-        <div style="white-space:pre-wrap; background:#f7f7f7; padding:10px; border-radius:6px;">{cover or 'N/A'}</div>
-        """)
-        
-    html_body = f"""
-    <html><body>
-      <h2>Music Job Search Digest</h2>
-      <p>Generated: {now}</p>
-      <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-        <tr style="background-color: #f2f2f2;"><th>#</th><th>Job</th><th>Company</th><th>Location</th><th>Score</th><th>Apply?</th></tr>
-        {''.join(rows)}
-      </table>
-      {''.join(details)}
-    </body></html>
-    """
-    
+    html_body = f"<html><body><h2>Job Digest</h2><table border='1'>{''.join(rows)}</table>{''.join(details)}</body></html>"
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
     msg["From"] = from_addr
@@ -327,38 +318,33 @@ def send_email(jobs, cfg):
     msg.attach(MIMEText(html_body, "html"))
     
     try:
-        if port == 465:
-            server = smtplib.SMTP_SSL(host, port)
-        else:
-            server = smtplib.SMTP(host, port)
-            server.starttls()
+        server = smtplib.SMTP(host, 587)
+        server.starttls()
         server.login(user, password)
         server.sendmail(from_addr, [to_addr], msg.as_string())
         server.quit()
-        logging.info(f"Email sent successfully to {to_addr}")
+        logging.info("Email sent.")
     except Exception as e:
-        logging.error(f"Failed to send email: {e}")
+        logging.error(f"Email failed: {e}")
 
-# --- MAIN EXECUTION ---
 def main():
-    logging.info("Starting Live Job Agent...")
+    logging.info("Starting Live Job Agent (Real Fetch Mode)...")
     cfg = load_config()
     conn = init_db()
     session = requests.Session()
-    session.headers.update({"User-Agent": "Mozilla/5.0 (compatible; MusicJobAgent/1.0)"})
+    session.headers.update({"User-Agent": "Mozilla/5.0"})
     
-    # Enable sources dynamically for live run
+    # Enable sources
     if "adzuna" in cfg.get("sources", {}): cfg["sources"]["adzuna"]["enabled"] = True
-    if "jooble" in cfg.get("sources", {}): cfg["sources"]["jooble"]["enabled"] = True
     if "rss" in cfg.get("sources", {}): cfg["sources"]["rss"]["enabled"] = True
     
-    fetch_limit = cfg.get("agent", {}).get("max_jobs_to_fetch_per_source", 25)
+    fetch_limit = cfg.get("agent", {}).get("max_jobs_to_fetch_per_source", 10)
     
     fetched = []
     fetched.extend(fetch_adzuna(cfg, session, fetch_limit))
     fetched.extend(fetch_rss_feeds(cfg, session))
     fetched.extend(fetch_tn_gov_jobs(session))
-    logging.info(f"Fetched {len(fetched)} raw jobs.")
+    logging.info(f"Fetched {len(fetched)} REAL raw jobs.")
     
     new_jobs = []
     for job in fetched:
@@ -370,12 +356,12 @@ def main():
             continue
         new_jobs.append(job)
         
-    max_match = cfg.get("agent", {}).get("max_jobs_to_match", 50)
+    max_match = cfg.get("agent", {}).get("max_jobs_to_match", 20)
     new_jobs = new_jobs[:max_match]
     logging.info(f"New jobs to match: {len(new_jobs)}")
     
     matched = []
-    min_score = cfg.get("agent", {}).get("min_match_score", 65)
+    min_score = cfg.get("agent", {}).get("min_match_score", 35)
     
     for job in new_jobs:
         try:
@@ -386,36 +372,28 @@ def main():
                 matched.append(job)
         except Exception as e:
             logging.error(f"Error matching job {job.get('title')}: {e}")
-        time.sleep(2) # Sleep to respect Groq free tier rate limits
+        time.sleep(2) 
         
     conn.commit()
     matched.sort(key=lambda x: x.get("match_score", 0), reverse=True)
 
-    # --- GENERATE DASHBOARD DATA (jobs.json) ---
-    # We prepare a clean list for the index.html to read
+    # Save ALL matched jobs to JSON for Dashboard
     dashboard_data = []
     for job in matched:
         dashboard_data.append({
-            "title": job.get("title"),
-            "company": job.get("company"),
-            "location": job.get("location"),
-            "url": job.get("url"),
-            "source": job.get("source"),
-            "posted_date": job.get("posted_date"),
-            "remote": job.get("remote", False),
-            "match_score": job.get("match_score"),
-            "should_apply": job.get("should_apply"),
-            "fit_reasons": job.get("fit_reasons", []),
-            "gaps": job.get("gaps", []),
-            "cover_letter": job.get("cover_letter", "")
+            "title": job.get("title"), "company": job.get("company"), "location": job.get("location"),
+            "url": job.get("url"), "source": job.get("source"), "posted_date": job.get("posted_date"),
+            "remote": job.get("remote", False), "match_score": job.get("match_score"),
+            "should_apply": job.get("should_apply"), "fit_reasons": job.get("fit_reasons", []),
+            "gaps": job.get("gaps", []), "cover_letter": job.get("cover_letter", "")
         })
     
     with open("jobs.json", "w", encoding="utf-8") as f:
         json.dump(dashboard_data, f, ensure_ascii=False, indent=2)
-    logging.info("Saved jobs.json for GitHub Pages dashboard.")
+    logging.info(f"Saved {len(dashboard_data)} REAL jobs to jobs.json.")
 
     if not matched:
-        logging.info("No new jobs above the match threshold.")
+        logging.info("No new jobs above threshold.")
     else:
         logging.info(f"Found {len(matched)} matching jobs. Sending email...")
         send_email(matched, cfg)
