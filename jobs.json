@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Senior Python Developer",
+    "company": "Tech Corp",
+    "location": "Remote",
+    "type": "Full-time",
+    "match_score": 95,
+    "url": "https://example.com/job1",
+    "posted_date": "2026-08-13",
+    "fit_reasons": ["Strong Python experience", "AWS knowledge matches"],
+    "gaps": ["Missing specific industry certification"],
+    "cover_letter": "I am excited to apply for this role given my extensive background in Python..."
+  },
+  {
+    "title": "Data Engineer",
+    "company": "Data Solutions Inc",
+    "location": "New York, NY",
+    "type": "Hybrid",
+    "match_score": 88,
+    "url": "https://example.com/job2",
+    "posted_date": "2026-08-12",
+    "fit_reasons": ["SQL expertise", "ETL pipeline experience"],
+    "gaps": [],
+    "cover_letter": "My experience building scalable data pipelines aligns perfectly with your needs..."
+  }
+]
