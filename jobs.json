@@ -1,22 +1,156 @@
 [
   {
-    "title": "System Test: Carnatic Vocal Instructor",
-    "company": "Job Agent Dashboard",
-    "location": "Chennai / Remote",
-    "url": "https://github.com/Singer92/job-search",
-    "source": "manual_test",
-    "posted_date": "2026-08-10",
-    "remote": true,
-    "match_score": 95,
+    "title": "IB PYP Indian Classical Vocal & Instrumental Teacher",
+    "company": "Teacher Pool",
+    "location": "Jaipur, Rajasthan",
+    "url": "https://www.adzuna.in/details/5837542234?utm_medium=api&utm_source=1e437ba0",
+    "source": "adzuna:in",
+    "posted_date": "2026-08-12T07:02:22Z",
+    "remote": false,
+    "match_score": 60,
     "should_apply": "yes",
     "fit_reasons": [
-      "Matches your Kalakshetra Diploma",
-      "Matches your M.A. in Indian Music",
-      "Matches your 10+ years of teaching experience"
+      "Indian Classical Vocal & Instrumental Teacher role aligns with target_roles",
+      "Job requires teaching Indian classical music, which matches core_skills",
+      "Location is in India, which is within target_regions",
+      "Role involves teaching and music education, matching education and experience_highlights"
     ],
     "gaps": [
-      "This is a test entry to verify the dashboard works"
+      "No explicit mention of Carnatic music specialization",
+      "No information on visa sponsorship or relocation support"
     ],
-    "cover_letter": "Dear Hiring Team, I am writing to express my interest in the Carnatic Vocal Instructor position. With a Diploma from Kalakshetra Foundation and over 10 years of teaching experience, I am confident in my ability to contribute to your institution. Sincerely, Ezhilarasi Murugesan"
+    "cover_letter": "Dear Hiring Manager, I am excited to apply for the IB PYP Indian Classical Vocal & Instrumental Teacher position at Teacher Pool. With over 10 years of experience in teaching music and a strong background in Indian classical music, I am confident in my ability to plan and deliver music lessons for students. My expertise in vocal pedagogy and music education will enable me to introduce students to age-appropriate concepts of melody, rhythm, pitch, beat, Raga, and Tala. I am eager to contribute my skills and experience to your team and provide high-quality music education to students. Thank you for considering my application."
+  },
+  {
+    "title": "IB PYP Indian Classical Vocal & Instrumental Teacher",
+    "company": "Teacher Pool",
+    "location": "Jaipur, Rajasthan",
+    "url": "https://www.adzuna.in/details/5837542234?utm_medium=api&utm_source=1e437ba0",
+    "source": "adzuna:in",
+    "posted_date": "2026-08-12T07:02:22Z",
+    "remote": false,
+    "match_score": 60,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "Indian classical music teaching",
+      "vocal and instrumental music instruction",
+      "music education",
+      "curriculum design implications"
+    ],
+    "gaps": [
+      "no explicit mention of Carnatic music",
+      "no information on visa sponsorship or relocation support"
+    ],
+    "cover_letter": "Dear Hiring Manager, I am excited to apply for the IB PYP Indian Classical Vocal & Instrumental Teacher position at Teacher Pool in Jaipur. As a seasoned music educator with over 10 years of experience in teaching Indian classical music, I am confident in my ability to plan and deliver engaging music lessons for PYP students. My specialization in Carnatic vocal music and experience in teaching vocal and instrumental music make me a strong fit for this role. I am eager to introduce students to age-appropriate concepts of melody, rhythm, pitch, beat, Raga, and Tala, and develop their listening and musical awareness. I am a strong believer in the importance of music education in fostering creativity, musical exploration, and cultural appreciation. I am open to relocating to Jaipur and am excited about the opportunity to join your team. Thank you for considering my application. Sincerely, Ezhilarasi Murugesan"
+  },
+  {
+    "title": "Become a Music Tutor in Churchtown (Lancashire) – Flexible & Remote",
+    "company": "FindTutors",
+    "location": "Churchtown, Ramsey",
+    "url": "https://www.adzuna.co.uk/jobs/details/5838195191?utm_medium=api&utm_source=1e437ba0",
+    "source": "adzuna:gb",
+    "posted_date": "2026-08-12T12:38:49Z",
+    "remote": true,
+    "match_score": 40,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "online music teaching",
+      "flexible schedule",
+      "remote work"
+    ],
+    "gaps": [
+      "no explicit mention of Carnatic music or Indian classical music",
+      "no clear indication of visa sponsorship for relocation",
+      "role does not explicitly require music education or curriculum design experience"
+    ],
+    "cover_letter": "Dear Hiring Manager, I am excited to apply for the Music Tutor position in Churchtown, Lancashire. With over 10 years of music teaching experience and a strong background in online music instruction, I am confident in my ability to guide students to better results. My experience in music education and curriculum design has equipped me with the skills to share study strategies and organization tips, and encourage confidence and motivation in students. I am particularly drawn to this role because of its flexibility and remote work arrangement, which aligns with my own schedule and preferences. I look forward to discussing my application and how I can contribute to the success of your students."
+  },
+  {
+    "title": "Arts Educator",
+    "company": "Dudley Metropolitan Borough Council",
+    "location": "UK",
+    "url": "https://www.adzuna.co.uk/jobs/details/5834282637?utm_medium=api&utm_source=1e437ba0",
+    "source": "adzuna:gb",
+    "posted_date": "2026-08-09T03:59:24Z",
+    "remote": false,
+    "match_score": 40,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "Music education background",
+      "Teaching experience",
+      "Arts education specialist"
+    ],
+    "gaps": [
+      "Lack of explicit keyboard specialist experience",
+      "No clear indication of Carnatic or Indian classical music focus",
+      "Visa sponsorship or relocation support not mentioned"
+    ],
+    "cover_letter": "Dear Hiring Manager, I am excited to apply for the Arts Educator position at Dudley Metropolitan Borough Council. With over 10 years of music teaching experience and a background in Carnatic vocal pedagogy, I am confident in my ability to inspire students and contribute to the success of your team. Although my expertise lies in Indian classical music, I am eager to adapt my skills to the keyboard specialist role and explore ways to incorporate diverse musical traditions into the curriculum. I would welcome the opportunity to discuss how my experience and passion for music education can support the goals of Dudley Performing Arts. Thank you for considering my application."
+  },
+  {
+    "title": "Music PPA Teacher",
+    "company": "Aspire People Limited",
+    "location": "Birmingham, West Midlands",
+    "url": "https://www.adzuna.co.uk/jobs/land/ad/5838270601?se=NpDUEsiW8RGxk6A97inGOg&utm_medium=api&utm_source=1e437ba0&v=7737C6C5C1B2C7A21A68846CAEBC25F6A7E01756",
+    "source": "adzuna:gb",
+    "posted_date": "2026-08-12T13:56:56Z",
+    "remote": false,
+    "match_score": 40,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "Music education background",
+      "Teaching experience",
+      "Music performance skills"
+    ],
+    "gaps": [
+      "Lack of explicit visa sponsorship in the job description",
+      "Role is not specifically focused on Carnatic music or Indian classical music",
+      "No clear indication of opportunities for composition or vocal performance"
+    ],
+    "cover_letter": "Dear Hiring Manager, I am excited to apply for the Music PPA Teacher position at Aspire People Limited. With over 10 years of music teaching experience and a strong background in music education, I am confident in my ability to deliver high-quality music lessons to students. My experience as a music teacher has equipped me with the skills to inspire young learners and create engaging music lessons. I am particularly drawn to this role because of the opportunity to work with primary school students and contribute to their musical development. I am willing to relocate for this position and am excited about the prospect of joining a welcoming primary school in Northfield. Thank you for considering my application. Sincerely, Ezhilarasi Murugesan"
+  },
+  {
+    "title": "Music PPA Teacher",
+    "company": "Aspire People",
+    "location": "Balsall Heath, Birmingham",
+    "url": "https://www.adzuna.co.uk/jobs/land/ad/5838268269?se=NpDUEsiW8RGxk6A97inGOg&utm_medium=api&utm_source=1e437ba0&v=4AE3B47D4749D8B14F080F4B64476333A39EFAB5",
+    "source": "adzuna:gb",
+    "posted_date": "2026-08-12T13:53:50Z",
+    "remote": false,
+    "match_score": 40,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "Music education background",
+      "Teaching experience",
+      "Performance profile"
+    ],
+    "gaps": [
+      "Lack of explicit visa sponsorship mention",
+      "Role not specifically focused on Carnatic or Indian classical music",
+      "No clear indication of online teaching involvement"
+    ],
+    "cover_letter": "Dear Hiring Manager, I am excited to apply for the Music PPA Teacher position at your school. With over 10 years of music teaching experience and a strong background in Carnatic and Indian classical music, I am confident in my ability to deliver engaging music lessons across the primary age range. I am eager to inspire young learners and contribute to the school's music program. Although my expertise lies in Carnatic music, I am adaptable and enthusiastic about teaching a broad music curriculum. I look forward to discussing my application and how I can make a positive impact at your school."
+  },
+  {
+    "title": "Lecturer in Music",
+    "company": "We Are Zenith",
+    "location": "Wrexham, Wales",
+    "url": "https://www.adzuna.co.uk/jobs/land/ad/5838623033?se=gOC-FciW8RGoK7HEibahcA&utm_medium=api&utm_source=1e437ba0&v=D3C2497F734A3BD7AF2F1DC65EEF1C7C059DBEAB",
+    "source": "adzuna:gb",
+    "posted_date": "2026-08-12T17:52:14Z",
+    "remote": false,
+    "match_score": 40,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "Music education background",
+      "Teaching experience",
+      "Performance profile"
+    ],
+    "gaps": [
+      "Lack of explicit visa sponsorship in the job description",
+      "Geographical location outside of preferred regions",
+      "No clear indication of Carnatic music or Indian classical music focus"
+    ],
+    "cover_letter": "Dear Hiring Manager, I am excited to apply for the Lecturer in Music position at We Are Zenith. With over 10 years of music teaching experience and a strong background in music education, I am confident in my ability to deliver engaging and innovative lessons. My performance profile as a Carnatic vocal performer and composer will enable me to bring a unique perspective to the role. I am open to relocation and eager to discuss how my skills and experience align with the position. Thank you for considering my application."
   }
 ]
