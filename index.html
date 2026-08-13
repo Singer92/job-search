@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Search Dashboard</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .job-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .job-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .company-name {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .match-score {
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .match-score.high { background: var(--success); }
+        .match-score.med { background: var(--warning); }
+
+        .job-details {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: #e5e7eb;
+            margin-right: 5px;
+            font-size: 0.8rem;
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+
+        .fit-reasons, .gaps {
+            font-size: 0.85rem;
+            background: #f9fafb;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .fit-reasons ul, .gaps ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .cover-letter {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--text-light);
+            background: #eff6ff;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .apply-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: auto;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .apply-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .error {
+            text-align: center;
+            padding: 20px;
+            color: #ef4444;
+            background: #fee2e2;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Job Match Dashboard</h1>
+            <p>AI-Curated Opportunities Based on Your Profile</p>
+        </header>
+
+        <div id="stats" class="stats"></div>
+        <div id="jobs-container" class="jobs-grid">
+            <div class="loading">Loading jobs...</div>
+        </div>
+    </div>
+
+    <script>
+        // Cache buster to ensure we get the latest jobs.json
+        const CACHE_BUSTER = new Date().getTime();
+        const JOBS_URL = `jobs.json?t=${CACHE_BUSTER}`;
+
+        async function loadJobs() {
+            try {
+                const response = await fetch(JOBS_URL);
+                if (!response.ok) throw new Error('Failed to load jobs');
+                
+                const data = await response.json();
+                const jobs = Array.isArray(data) ? data : (data.jobs || []);
+                
+                renderStats(jobs);
+                renderJobs(jobs);
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('jobs-container').innerHTML = 
+                    `<div class="error">Error loading jobs: ${error.message}. Make sure jobs.json exists.</div>`;
+            }
+        }
+
+        function renderStats(jobs) {
+            const total = jobs.length;
+            const avgScore = total > 0 
+                ? Math.round(jobs.reduce((sum, job) => sum + (job.match_score || 0), 0) / total) 
+                : 0;
+            const remoteCount = jobs.filter(j => j.remote === true || j.type === 'Remote').length;
+
+            document.getElementById('stats').innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number">${total}</div>
+                    <div class="stat-label">Total Jobs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${avgScore}%</div>
+                    <div class="stat-label">Avg Match Score</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${remoteCount}</div>
+                    <div class="stat-label">Remote Roles</div>
+                </div>
+            `;
+        }
+
+        function renderJobs(jobs) {
+            const container = document.getElementById('jobs-container');
+            
+            if (jobs.length === 0) {
+                container.innerHTML = '<div class="loading">No matching jobs found yet.</div>';
+                return;
+            }
+
+            container.innerHTML = jobs.map(job => {
+                const scoreClass = (job.match_score || 0) >= 80 ? 'high' : ((job.match_score || 0) >= 60 ? 'med' : '');
+                
+                const fitList = (job.fit_reasons || []).map(r => `<li>${r}</li>`).join('');
+                const gapList = (job.gaps || []).map(g => `<li>${g}</li>`).join('');
+                
+                return `
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">${job.title || 'Unknown Role'}</h3>
+                                <div class="company-name">${job.company || 'Confidential'}</div>
+                            </div>
+                            <div class="match-score ${scoreClass}">${job.match_score || 0}% Match</div>
+                        </div>
+
+                        <div class="job-details">
+                            <span class="badge">${job.location || 'Remote'}</span>
+                            <span class="badge">${job.type || 'Full-time'}</span>
+                            ${job.posted_date ? `<span class="badge">Posted: ${job.posted_date}</span>` : ''}
+                        </div>
+
+                        ${job.fit_reasons && job.fit_reasons.length > 0 ? `
+                            <div class="section-title">✅ Why You're a Fit</div>
+                            <div class="fit-reasons"><ul>${fitList}</ul></div>
+                        ` : ''}
+
+                        ${job.gaps && job.gaps.length > 0 ? `
+                            <div class="section-title">⚠️ Potential Gaps</div>
+                            <div class="gaps"><ul>${gapList}</ul></div>
+                        ` : ''}
+
+                        ${job.cover_letter ? `
+                            <div class="section-title">✉️ AI Cover Letter Snippet</div>
+                            <div class="cover-letter">"${job.cover_letter.substring(0, 150)}..."</div>
+                        ` : ''}
+
+                        <a href="${job.url || '#'}" target="_blank" class="apply-btn">Apply Now</a>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadJobs);
+    </script>
+</body>
+</html>
