@@ -1,26 +1,205 @@
 [
   {
-    "title": "Senior Python Developer",
-    "company": "Tech Corp",
-    "location": "Remote",
-    "type": "Full-time",
-    "match_score": 95,
-    "url": "https://example.com/job1",
-    "posted_date": "2026-08-13",
-    "fit_reasons": ["Strong Python experience", "AWS knowledge matches"],
-    "gaps": ["Missing specific industry certification"],
-    "cover_letter": "I am excited to apply for this role given my extensive background in Python..."
+    "title": "Online Carnatic Vocal Instructor",
+    "company": "Global Indian Music Academy",
+    "location": "Remote (Worldwide)",
+    "url": "https://example.com/job/online-carnatic-vocal",
+    "source": "adzuna:us",
+    "posted_date": "2026-08-09",
+    "remote": true,
+    "match_score": 96,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "Direct match for your Kalakshetra Foundation Diploma",
+      "Requires 10+ years of teaching experience (you have 10+)",
+      "Focus on varnams, kritis, and ragam aligns with your core competencies",
+      "Remote role fits your independent online teaching practice"
+    ],
+    "gaps": [
+      "Requires availability during US evening hours (IST night)"
+    ],
+    "cover_letter": "Dear Hiring Team, I am writing to apply for the Online Carnatic Vocal Instructor position. With a Diploma from Kalakshetra Foundation, an M.A. in Indian Music, and over 10 years of teaching experience (including at Vanshi Manthan Vidyashram), I am confident in my ability to deliver high-quality vocal pedagogy. My experience in producing customised karaoke backing tracks and teaching students of all ages aligns perfectly with your requirements. Sincerely, Ezhilarasi Murugesan"
   },
   {
-    "title": "Data Engineer",
-    "company": "Data Solutions Inc",
-    "location": "New York, NY",
-    "type": "Hybrid",
+    "title": "Guest Lecturer in Music (Carnatic Vocal)",
+    "company": "University of Madras Affiliated College",
+    "location": "Chennai, Tamil Nadu",
+    "url": "https://example.com/job/guest-lecturer-music",
+    "source": "rss:Employment News India",
+    "posted_date": "2026-08-08",
+    "remote": false,
+    "match_score": 92,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "Your M.A. and B.Mus are from University of Madras",
+      "PhD in progress at VISTAS meets UGC criteria for Guest Faculty",
+      "Location is Chennai (no visa issues)",
+      "Matches your research interest in Nagarathar Music Traditions"
+    ],
+    "gaps": [
+      "May require NET/SET qualification (check notification)"
+    ],
+    "cover_letter": "Dear Selection Committee, I am writing to express my interest in the Guest Lecturer position. As a doctoral research scholar at VISTAS specializing in Nagarathar Music Traditions and an alumna of the University of Madras (M.A. Indian Music), I bring a blend of academic rigor and performance expertise. My decade of teaching experience at institutions like Sangeetha Kalalayaa ensures I can effectively mentor undergraduate students. Sincerely, Ezhilarasi Murugesan"
+  },
+  {
+    "title": "Music Teacher (Higher Secondary)",
+    "company": "Teachers Recruitment Board (TRB) TN",
+    "location": "Tamil Nadu, India",
+    "url": "http://trb.tn.gov.in/",
+    "source": "tn_gov_scraper",
+    "posted_date": "2026-08-07",
+    "remote": false,
     "match_score": 88,
-    "url": "https://example.com/job2",
-    "posted_date": "2026-08-12",
-    "fit_reasons": ["SQL expertise", "ETL pipeline experience"],
-    "gaps": [],
-    "cover_letter": "My experience building scalable data pipelines aligns perfectly with your needs..."
+    "should_apply": "yes",
+    "fit_reasons": [
+      "Government recruitment matching your B.Mus/M.A. qualifications",
+      "Your experience at Vanshi Manthan Vidyashram (Edexcel affiliated) is highly valued",
+      "Includes inclusive education experience (autistic children) which is a plus in govt schools"
+    ],
+    "gaps": [
+      "Strict age limit verification required",
+      "Written exam preparation needed"
+    ],
+    "cover_letter": "To the TRB Authority, I am applying for the Music Teacher post. With a Bachelor of Music and M.A. in Indian Music from the University of Madras, along with 10 years of classroom experience, I meet the eligibility criteria. My background in curriculum design and student coaching for competitions makes me a strong candidate for the state education system. Sincerely, Ezhilarasi Murugesan"
+  },
+  {
+    "title": "Indian Classical Music Teacher",
+    "company": "Singapore Indian Fine Arts Society (SIFAS)",
+    "location": "Singapore",
+    "url": "https://example.com/job/sifas-teacher",
+    "source": "adzuna:sg",
+    "posted_date": "2026-08-06",
+    "remote": false,
+    "match_score": 85,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "High demand for Carnatic vocalists in Singapore diaspora",
+      "Your performance profile (sabhas/concerts) is highly valued here",
+      "Visa sponsorship typically available for specialized arts roles"
+    ],
+    "gaps": [
+      "Relocation required (check visa sponsorship explicitly)"
+    ],
+    "cover_letter": "Dear SIFAS Committee, I am an active Carnatic vocalist and educator with over 10 years of experience. Trained at Kalakshetra Foundation and currently pursuing a PhD in Music, I wish to contribute to the vibrant Indian classical music scene in Singapore. My experience in stagecraft and performance preparation will benefit your students significantly. Sincerely, Ezhilarasi Murugesan"
+  },
+  {
+    "title": "Curriculum Designer (South Asian Music)",
+    "company": "World Music Pedagogy Project",
+    "location": "Remote",
+    "url": "https://example.com/job/curriculum-designer",
+    "source": "adzuna:gb",
+    "posted_date": "2026-08-05",
+    "remote": true,
+    "match_score": 82,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "Leverages your outcome-based programme design (KG to Grade 8)",
+      "Matches your ESCOM membership and research background",
+      "Remote role allows you to continue your PhD"
+    ],
+    "gaps": [
+      "May require familiarity with Western notation software"
+    ],
+    "cover_letter": "Dear Hiring Manager, I am applying for the Curriculum Designer role. My experience designing progressive syllabi at Vanshi Manthan Vidyashram, combined with my doctoral research in Indian Music, positions me uniquely to bridge South Asian traditions with global pedagogy standards. I am eager to bring my research-informed approach to your project. Sincerely, Ezhilarasi Murugesan"
+  },
+  {
+    "title": "Music Facilitator (Inclusive Education)",
+    "company": "Aanmajothi – Music to Schools Initiative",
+    "location": "Chennai / Bangalore",
+    "url": "https://example.com/job/aanmajothi-facilitator",
+    "source": "rss:Academic Positions India",
+    "posted_date": "2026-08-04",
+    "remote": false,
+    "match_score": 90,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "You are already a contributor to this initiative!",
+      "Directly matches your competency in 'music education for autistic children'",
+      "Aligns with your paper 'Harmonizing Young Minds' presented at World Music Conference 2025"
+    ],
+    "gaps": [
+      "Part-time or contract basis likely"
+    ],
+    "cover_letter": "Dear Aanmajothi Team, As a current contributor to the initiative and a specialist in inclusive music education, I am excited to apply for the Music Facilitator role. My research on emotional and social development through music, combined with my practical experience teaching children with diverse needs, makes me a perfect fit for expanding this program. Sincerely, Ezhilarasi Murugesan"
+  },
+  {
+    "title": "Vocal Coach (Bhajans & Devotional)",
+    "company": "Diaspora Temple Trusts",
+    "location": "USA / UK / Canada (Remote)",
+    "url": "https://example.com/job/temple-vocal-coach",
+    "source": "adzuna:ca",
+    "posted_date": "2026-08-03",
+    "remote": true,
+    "match_score": 78,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "Matches your skill in producing customized karaoke backing tracks",
+      "Focus on bhajans and devotional repertoire is your core strength",
+      "Flexible hours suitable for PhD scholar"
+    ],
+    "gaps": [
+      "May require weekend availability for temple events"
+    ],
+    "cover_letter": "Dear Trustees, I offer specialized vocal coaching for devotional repertoire, supported by my experience producing backing tracks for student performances. With a deep grounding in Carnatic bhajans and kritis from Kalakshetra Foundation, I can help your community choir and soloists enhance their musical offerings. Sincerely, Ezhilarasi Murugesan"
+  },
+  {
+    "title": "Assistant Professor of Music",
+    "company": "Vels Institute of Science, Technology & Advanced Studies (VISTAS)",
+    "location": "Chennai, Tamil Nadu",
+    "url": "https://example.com/job/vistas-asst-prof",
+    "source": "rss:FreeJobAlert - TN Govt",
+    "posted_date": "2026-08-02",
+    "remote": false,
+    "match_score": 87,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "You are already a PhD scholar here (internal candidate advantage)",
+      "Meets UGC criteria for Assistant Professor",
+      "Your 10 years of prior teaching experience counts towards eligibility"
+    ],
+    "gaps": [
+      "Internal recruitment policies may apply"
+    ],
+    "cover_letter": "Dear Registrar, As a current doctoral scholar at VISTAS researching Nagarathar Music Traditions, I am eager to apply for the Assistant Professor position. My decade of teaching experience at Sangeetha Kalalayaa and Niharika Multi-Activity Centre, combined with my academic qualifications from the University of Madras, prepares me to contribute effectively to the Department of Music. Sincerely, Ezhilarasi Murugesan"
+  },
+  {
+    "title": "Performing Artist & Vocalist",
+    "company": "On the Streets of Chennai (Self/Collab)",
+    "location": "Chennai / Touring",
+    "url": "https://example.com/job/performing-artist",
+    "source": "manual_entry",
+    "posted_date": "2026-08-01",
+    "remote": false,
+    "match_score": 75,
+    "should_apply": "maybe",
+    "fit_reasons": [
+      "You are the founder-performer of this band",
+      "Showcases your violin, guitar, and original composition skills",
+      "Good for portfolio building alongside teaching"
+    ],
+    "gaps": [
+      "Income may be variable compared to salaried teaching"
+    ],
+    "cover_letter": "N/A - Internal Project"
+  },
+  {
+    "title": "Music Notator / Transcriber",
+    "company": "Indian Music Publishing House",
+    "location": "Remote",
+    "url": "https://example.com/job/music-notator",
+    "source": "adzuna:in",
+    "posted_date": "2026-07-30",
+    "remote": true,
+    "match_score": 70,
+    "should_apply": "yes",
+    "fit_reasons": [
+      "Leverages your specific skill in 'Music Theory & Notating Songs'",
+      "Remote work fits your schedule",
+      "Supports your composition interests"
+    ],
+    "gaps": [
+      "May require specific software proficiency (Sibelius/Finale)"
+    ],
+    "cover_letter": "Dear Editor, I am applying for the Music Notator role. My academic background in Indian Music (M.A., B.Mus) has given me a strong command of music theory and notation. I am experienced in transcribing compositions and can ensure accuracy in publishing Carnatic and light music works. Sincerely, Ezhilarasi Murugesan"
   }
 ]
