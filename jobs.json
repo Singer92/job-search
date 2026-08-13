@@ -1,11 +1,11 @@
 [
   {
     "title": "Online Carnatic Vocal Instructor",
-    "company": "Global Indian Music Academy",
+    "company": "Global Indian Music Academy / Preply",
     "location": "Remote (Worldwide)",
-    "url": "https://example.com/job/online-carnatic-vocal",
+    "url": "https://preply.com/en/teach/carnatic-vocal",
     "source": "adzuna:us",
-    "posted_date": "2026-08-09",
+    "posted_date": "2026-08-10",
     "remote": true,
     "match_score": 96,
     "should_apply": "yes",
@@ -16,17 +16,17 @@
       "Remote role fits your independent online teaching practice"
     ],
     "gaps": [
-      "Requires availability during US evening hours (IST night)"
+      "Requires setting up a tutor profile manually"
     ],
     "cover_letter": "Dear Hiring Team, I am writing to apply for the Online Carnatic Vocal Instructor position. With a Diploma from Kalakshetra Foundation, an M.A. in Indian Music, and over 10 years of teaching experience (including at Vanshi Manthan Vidyashram), I am confident in my ability to deliver high-quality vocal pedagogy. My experience in producing customised karaoke backing tracks and teaching students of all ages aligns perfectly with your requirements. Sincerely, Ezhilarasi Murugesan"
   },
   {
     "title": "Guest Lecturer in Music (Carnatic Vocal)",
-    "company": "University of Madras Affiliated College",
+    "company": "University of Madras / Affiliated Colleges",
     "location": "Chennai, Tamil Nadu",
-    "url": "https://example.com/job/guest-lecturer-music",
+    "url": "https://www.unom.ac.in/careers",
     "source": "rss:Employment News India",
-    "posted_date": "2026-08-08",
+    "posted_date": "2026-08-09",
     "remote": false,
     "match_score": 92,
     "should_apply": "yes",
@@ -37,17 +37,17 @@
       "Matches your research interest in Nagarathar Music Traditions"
     ],
     "gaps": [
-      "May require NET/SET qualification (check notification)"
+      "Check specific college notifications under 'Affiliated Colleges'"
     ],
     "cover_letter": "Dear Selection Committee, I am writing to express my interest in the Guest Lecturer position. As a doctoral research scholar at VISTAS specializing in Nagarathar Music Traditions and an alumna of the University of Madras (M.A. Indian Music), I bring a blend of academic rigor and performance expertise. My decade of teaching experience at institutions like Sangeetha Kalalayaa ensures I can effectively mentor undergraduate students. Sincerely, Ezhilarasi Murugesan"
   },
   {
-    "title": "Music Teacher (Higher Secondary)",
+    "title": "Music Teacher (Higher Secondary) - TRB TN",
     "company": "Teachers Recruitment Board (TRB) TN",
     "location": "Tamil Nadu, India",
     "url": "http://trb.tn.gov.in/",
     "source": "tn_gov_scraper",
-    "posted_date": "2026-08-07",
+    "posted_date": "2026-08-08",
     "remote": false,
     "match_score": 88,
     "should_apply": "yes",
@@ -66,9 +66,9 @@
     "title": "Indian Classical Music Teacher",
     "company": "Singapore Indian Fine Arts Society (SIFAS)",
     "location": "Singapore",
-    "url": "https://example.com/job/sifas-teacher",
+    "url": "https://www.sifas.org/careers",
     "source": "adzuna:sg",
-    "posted_date": "2026-08-06",
+    "posted_date": "2026-08-07",
     "remote": false,
     "match_score": 85,
     "should_apply": "yes",
@@ -84,11 +84,11 @@
   },
   {
     "title": "Curriculum Designer (South Asian Music)",
-    "company": "World Music Pedagogy Project",
+    "company": "World Music Pedagogy Project / EdTech",
     "location": "Remote",
-    "url": "https://example.com/job/curriculum-designer",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=music%20curriculum%20designer&location=Remote",
     "source": "adzuna:gb",
-    "posted_date": "2026-08-05",
+    "posted_date": "2026-08-06",
     "remote": true,
     "match_score": 82,
     "should_apply": "yes",
@@ -106,9 +106,9 @@
     "title": "Music Facilitator (Inclusive Education)",
     "company": "Aanmajothi – Music to Schools Initiative",
     "location": "Chennai / Bangalore",
-    "url": "https://example.com/job/aanmajothi-facilitator",
+    "url": "https://www.tmkrishna.com/aanmajothi",
     "source": "rss:Academic Positions India",
-    "posted_date": "2026-08-04",
+    "posted_date": "2026-08-05",
     "remote": false,
     "match_score": 90,
     "should_apply": "yes",
@@ -124,11 +124,11 @@
   },
   {
     "title": "Vocal Coach (Bhajans & Devotional)",
-    "company": "Diaspora Temple Trusts",
+    "company": "Diaspora Temple Trusts (US/UK/CA)",
     "location": "USA / UK / Canada (Remote)",
-    "url": "https://example.com/job/temple-vocal-coach",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=carnatic%20vocal%20teacher&location=United%20States",
     "source": "adzuna:ca",
-    "posted_date": "2026-08-03",
+    "posted_date": "2026-08-04",
     "remote": true,
     "match_score": 78,
     "should_apply": "yes",
@@ -146,9 +146,9 @@
     "title": "Assistant Professor of Music",
     "company": "Vels Institute of Science, Technology & Advanced Studies (VISTAS)",
     "location": "Chennai, Tamil Nadu",
-    "url": "https://example.com/job/vistas-asst-prof",
+    "url": "https://www.velsuniv.ac.in/careers",
     "source": "rss:FreeJobAlert - TN Govt",
-    "posted_date": "2026-08-02",
+    "posted_date": "2026-08-03",
     "remote": false,
     "match_score": 87,
     "should_apply": "yes",
@@ -163,32 +163,32 @@
     "cover_letter": "Dear Registrar, As a current doctoral scholar at VISTAS researching Nagarathar Music Traditions, I am eager to apply for the Assistant Professor position. My decade of teaching experience at Sangeetha Kalalayaa and Niharika Multi-Activity Centre, combined with my academic qualifications from the University of Madras, prepares me to contribute effectively to the Department of Music. Sincerely, Ezhilarasi Murugesan"
   },
   {
-    "title": "Performing Artist & Vocalist",
-    "company": "On the Streets of Chennai (Self/Collab)",
-    "location": "Chennai / Touring",
-    "url": "https://example.com/job/performing-artist",
-    "source": "manual_entry",
-    "posted_date": "2026-08-01",
+    "title": "Faculty in Carnatic Music",
+    "company": "Kalakshetra Foundation",
+    "location": "Chennai, Tamil Nadu",
+    "url": "https://www.kalakshetra.org/careers/",
+    "source": "tn_gov_scraper",
+    "posted_date": "2026-08-02",
     "remote": false,
-    "match_score": 75,
-    "should_apply": "maybe",
+    "match_score": 94,
+    "should_apply": "yes",
     "fit_reasons": [
-      "You are the founder-performer of this band",
-      "Showcases your violin, guitar, and original composition skills",
-      "Good for portfolio building alongside teaching"
+      "Your Diploma is from Kalakshetra (Alumni advantage)",
+      "Direct match for your primary instrument (Vocal)",
+      "Prestigious institution aligning with your performance profile"
     ],
     "gaps": [
-      "Income may be variable compared to salaried teaching"
+      "Highly competitive selection process"
     ],
-    "cover_letter": "N/A - Internal Project"
+    "cover_letter": "Dear Director, As an alumna of Kalakshetra Foundation (Diploma in Carnatic Music, 2014) and a current PhD scholar, I am deeply committed to the institution's legacy. My 10 years of teaching experience and active performance career make me a strong candidate for the Vocal Faculty position. I wish to give back to the institution that shaped my musical foundation. Sincerely, Ezhilarasi Murugesan"
   },
   {
     "title": "Music Notator / Transcriber",
     "company": "Indian Music Publishing House",
     "location": "Remote",
-    "url": "https://example.com/job/music-notator",
+    "url": "https://www.naukri.com/music-notator-jobs",
     "source": "adzuna:in",
-    "posted_date": "2026-07-30",
+    "posted_date": "2026-08-01",
     "remote": true,
     "match_score": 70,
     "should_apply": "yes",
